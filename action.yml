@@ -1,7 +1,7 @@
 name: Create Text File
 description: Creates a text file very easy (Windows only)
 branding:
- logo: ''
+ logo: 'file-text'
  color: 'blue'
 inputs:
   text:
