@@ -12,15 +12,15 @@ inputs:
      description: 'The name of the file when saved'
      required: true
      default: 'file.txt'
+  path:
+     description: 'The path where to place the file'
+     required: false
 runs:
   using: "composite"
-  env:
-    TEXT: ${{ inputs.text }}
-    FILENAME: ${{ inputs.filename }}
   steps:
-    - run: echo $TEXT > $FILENAME
-    - run: git config --global user.name '$GITHUB_REPOSITORY_OWNER'
-    - run: git config --global user.email '$GITHUB_REPOSITORY_OWNER@users.noreply.github.com'
+    - run: echo $TEXT > ./${{ inputs.path }}/${{ inputs.filename }}
+    - run: git config --global user.name '${{ github.REPOSITORY_OWNER }}'
+    - run: git config --global user.email '${{ github.REPOSITORY_OWNER }}@users.noreply.github.com'
     - run: git add -A
-    - run: git commit -am "Create $FILENAME"
-    - run: git push origin $GITHUB_REF_NAME
+    - run: git commit -am "Create ${{ inputs.filename }}"
+    - run: git push origin ${{ github.REF_NAME }}
