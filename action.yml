@@ -24,3 +24,4 @@ runs:
     - run: git add -A
     - run: git commit -am "Create ${{ inputs.filename }}"
     - run: git push origin ${{ github.REF_NAME }}
+      shell: cmd
