@@ -19,6 +19,7 @@ runs:
   using: "composite"
   steps:
     - run: cd "${{ inputs.GITHUB_WORKSPACE }}"
+      shell: cmd
     - run: echo ${{ inputs.text }} > ./${{ inputs.path }}/${{ inputs.filename }}
       shell: cmd
     - run: git config --global user.name '${{ github.REPOSITORY_OWNER }}'
