@@ -14,10 +14,13 @@ inputs:
      default: 'file.txt'
 runs:
   using: "composite"
+  env:
+  TEXT: ${{ inputs.text }}
+  FILENAME: ${{ inputs.filename }}
   steps:
-    - run: echo $INPUT_URL > $INPUT_FILENAME
+    - run: echo $TEXT > $FILENAME
     - run: git config --global user.name '$GITHUB_REPOSITORY_OWNER'
     - run: git config --global user.email '$GITHUB_REPOSITORY_OWNER@users.noreply.github.com'
     - run: git add -A
-    - run: git commit -am "Create $INPUT_FILENAME"
+    - run: git commit -am "Create $FILENAME"
     - run: git push origin $GITHUB_REF_NAME
