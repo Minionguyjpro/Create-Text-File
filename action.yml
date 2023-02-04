@@ -1,0 +1,18 @@
+name: Create Text File
+description: Creates a text file very easy (Windows only)
+branding:
+ logo: ''
+ color: 'blue'
+inputs:
+  text:
+     description: 'The text to include in the file'
+     required: true
+     default: 'Hello world!'
+  filename:
+     description: 'The name of the file when saved'
+     required: true
+     default: 'file.txt'
+runs:
+  using: "composite"
+  steps:
+    - run: echo $INPUT_URL > $INPUT_FILENAME
