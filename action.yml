@@ -15,8 +15,8 @@ inputs:
 runs:
   using: "composite"
   env:
-  TEXT: ${{ inputs.text }}
-  FILENAME: ${{ inputs.filename }}
+    TEXT: ${{ inputs.text }}
+    FILENAME: ${{ inputs.filename }}
   steps:
     - run: echo $TEXT > $FILENAME
     - run: git config --global user.name '$GITHUB_REPOSITORY_OWNER'
