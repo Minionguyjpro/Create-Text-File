@@ -20,20 +20,28 @@ runs:
   steps:
     - run: "@echo off"
       shell: cmd
-    - uses: actions/checkout@v3
-    - run: cd "${{ github.WORKSPACE }}"
+    - name: Check out the repository
+      uses: actions/checkout@v3
+    - name: Change to GitHub repository directory
+      run: cd "${{ github.WORKSPACE }}"
       shell: cmd
-    - run: "if not exist ${{ inputs.path}} (echo Path doesn't exist! Creating it... && mkdir ${{ inputs.path }}) else (echo Path exists!)"
+    - name: Check for existence of path  
+      run: "if not exist ${{ inputs.path}} (echo Path doesn't exist! Creating it... && mkdir ${{ inputs.path }}) else (echo Path exists!)"
       shell: cmd
-    - run: "echo ${{ inputs.text }} > ./${{ inputs.path }}/${{ inputs.filename }}"
+    - name: Create text file
+      run: "echo ${{ inputs.text }} > ./${{ inputs.path }}/${{ inputs.filename }}"
       shell: cmd
-    - run: 'git config --global user.name "${{ github.REPOSITORY_OWNER }}"'
+    - name: Set repository configuration
+      run: | 
+        'git config --global user.name "${{ github.REPOSITORY_OWNER }}"'
+        'git config --global user.email "${{ github.REPOSITORY_OWNER }}@users.noreply.github.com"'
       shell: cmd
-    - run: 'git config --global user.email "${{ github.REPOSITORY_OWNER }}@users.noreply.github.com"'
+    - name: Include the new text file(s)
+      run: "git add -A"
       shell: cmd
-    - run: "git add -A"
+    - name: Create a commit for changes
+      run: 'git commit -am "Create ${{ inputs.filename }}"'
       shell: cmd
-    - run: 'git commit -am "Create ${{ inputs.filename }}"'
-      shell: cmd
-    - run: "git push origin ${{ github.REF_NAME }}"
+    - name: Push the made changes to the remote
+      run: "git push origin ${{ github.REF_NAME }}"
       shell: cmd
