@@ -15,11 +15,17 @@ inputs:
   path:
      description: 'The path where to place the file'
      required: false
+   overwrite:
+     description: 'overwrite the file if it exists'
+     required: false
+     default: 'true'
 runs:
   using: "composite"
   steps:
     - run: "@echo off"
       shell: cmd
+    - name: Check whether overwriting value is true or false
+      run: if %INPUT_OVERWRITE%==true (set INPUT_OVERWRITE= > nul) else (set INPUT_OVERWRITE=^>)
     - name: Check out the repository
       uses: actions/checkout@v3
     - name: Change to GitHub repository directory
@@ -29,7 +35,7 @@ runs:
       run: "if not exist ${{ inputs.path}} (echo Path doesn't exist! Creating it... && mkdir ${{ inputs.path }}) else (echo Path exists!)"
       shell: cmd
     - name: Create text file
-      run: "echo ${{ inputs.text }} > ./${{ inputs.path }}/${{ inputs.filename }}"
+      run: "echo ${{ inputs.text }} >%INPUT_OVERWRITE% ./${{ inputs.path }}/${{ inputs.filename }}"
       shell: cmd
     - name: Set repository configuration
       run: | 
