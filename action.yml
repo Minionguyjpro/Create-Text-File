@@ -18,7 +18,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: cd "${{ inputs.GITHUB_WORKSPACE }}"
+    - run: cd "${{ github.WORKSPACE }}"
       shell: cmd
     - run: echo ${{ inputs.text }} > ./${{ inputs.path }}/${{ inputs.filename }}
       shell: cmd
