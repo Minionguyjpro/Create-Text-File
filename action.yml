@@ -25,10 +25,10 @@ runs:
     - run: "@echo off"
       shell: cmd
     - name: Set variable for overwriting input
-      run: set OVERWRITE=${{ inputs.overwrite }}
+      run: "set OVERWRITE=${{ inputs.overwrite }}"
       shell: cmd
     - name: Check whether overwriting value is true or false
-      run: if %OVERWRITE%==true (set OVERWRITE= > nul) else (set OVERWRITE=^>)
+      run: "if %OVERWRITE%==true (set OVERWRITE= > nul) else (set OVERWRITE=^>)"
       shell: cmd
     - name: Check out the repository
       uses: actions/checkout@v3
