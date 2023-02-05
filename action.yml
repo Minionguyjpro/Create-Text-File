@@ -32,3 +32,5 @@ runs:
       shell: cmd
     - run: git push origin ${{ github.REF_NAME }}
       shell: cmd
+    - run: dir
+      shell: cmd
