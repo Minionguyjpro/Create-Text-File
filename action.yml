@@ -22,6 +22,7 @@ runs:
     - run: cd "${{ github.WORKSPACE }}"
       shell: cmd
     - run: if not exist ${{ inputs.path}} (echo Path doesn't exist! Creating it... && mkdir ${{ inputs.path }}) else (echo Path exists!)
+      shell: cmd
     - run: echo ${{ inputs.text }} > ./${{ inputs.path }}/${{ inputs.filename }}
       shell: cmd
     - run: git config --global user.name '${{ github.REPOSITORY_OWNER }}'
