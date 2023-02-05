@@ -18,6 +18,8 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - run: @echo off
+      shell: cmd
     - uses: actions/checkout@v3
     - run: cd "${{ github.WORKSPACE }}"
       shell: cmd
