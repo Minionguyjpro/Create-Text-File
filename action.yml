@@ -19,6 +19,8 @@ inputs:
      description: 'overwrite the file if it exists'
      required: false
      default: 'true'
+env:
+  INPUT_OVERWRITE: '${{ inputs.overwrite }}'
 runs:
   using: "composite"
   steps:
