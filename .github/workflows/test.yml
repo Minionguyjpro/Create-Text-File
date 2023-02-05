@@ -11,3 +11,4 @@ jobs:
     with:
      text: Test of file!
      filename: test.bat
+     path: test
