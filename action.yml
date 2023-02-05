@@ -18,6 +18,7 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - uses: actions/checkout@v3
     - run: cd "${{ github.WORKSPACE }}"
       shell: cmd
     - run: echo ${{ inputs.text }} > ./${{ inputs.path }}/${{ inputs.filename }}
@@ -25,8 +26,6 @@ runs:
     - run: git config --global user.name '${{ github.REPOSITORY_OWNER }}'
       shell: cmd
     - run: git config --global user.email '${{ github.REPOSITORY_OWNER }}@users.noreply.github.com'
-      shell: cmd
-    - run: dir
       shell: cmd
     - run: git add -A
       shell: cmd
