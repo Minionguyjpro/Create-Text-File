@@ -25,6 +25,7 @@ runs:
     - run: "@echo off"
       shell: cmd
     - name: Set variable for overwriting input
+      run: setlocal ENABLEDELAYEDEXPANSION
       run: "set OVERWRITE=${{ inputs.overwrite }}"
       shell: cmd
     - name: Check whether overwriting value is true or false
