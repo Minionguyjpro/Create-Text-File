@@ -26,6 +26,7 @@ runs:
       shell: cmd
     - name: Check whether overwriting value is true or false
       run: if %INPUT_OVERWRITE%==true (set INPUT_OVERWRITE= > nul) else (set INPUT_OVERWRITE=^>)
+      shell: cmd
     - name: Check out the repository
       uses: actions/checkout@v3
     - name: Change to GitHub repository directory
