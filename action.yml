@@ -26,11 +26,11 @@ runs:
       shell: cmd
     - run: git config --global user.email '${{ github.REPOSITORY_OWNER }}@users.noreply.github.com'
       shell: cmd
+    - run: dir
+      shell: cmd
     - run: git add -A
       shell: cmd
     - run: git commit -am "Create ${{ inputs.filename }}"
       shell: cmd
     - run: git push origin ${{ github.REF_NAME }}
-      shell: cmd
-    - run: dir
       shell: cmd
